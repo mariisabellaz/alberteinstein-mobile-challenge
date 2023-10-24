@@ -2,12 +2,17 @@ import { Dimensions, TouchableOpacity } from 'react-native';
 import { FlattenInterpolation, css } from 'styled-components';
 import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 
+import { Typography } from '@components/atoms/Typography';
 const { width } = Dimensions.get('window');
 
 type AppearanceType = 'primary' | 'secondary';
 
 export type CustomButtonProps = {
   appearance: AppearanceType;
+};
+
+export type CustomTextProps = {
+  type?: 'primary' | 'secondary';
 };
 
 const styles: {
@@ -38,4 +43,13 @@ export const Containers = styled(TouchableOpacity)<CustomButtonProps>`
     border-radius: ${theme.BORDER.RADIUS.BUTTON}px;
     margin: ${theme.SPACING.XS}px 0;
   `};
+`;
+
+export const Label = styled(Typography)<CustomTextProps>`
+  ${({ theme, type = 'primary' }) =>
+    css`
+      color: ${type === 'primary'
+        ? theme.COLORS.BUTTON.TEXT.PRIMARY
+        : theme.COLORS.BUTTON.TEXT.SECONDARY};
+    `};
 `;

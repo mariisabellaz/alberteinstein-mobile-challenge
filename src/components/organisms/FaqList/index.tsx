@@ -1,7 +1,7 @@
 import 'react-native-get-random-values';
 
 import React, { useState } from 'react';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 
 import { FaqItem } from '@components/molecules/FaqItem';
@@ -12,12 +12,9 @@ type ListItem = FaqModel | { id: number; title: string; body: string };
 type FaqListProps = {
   data: ListItem[];
   testID?: string;
-  onEndReached: () => void;
-  onEndReachedThreshold: number;
-  isLoading?: boolean;
 };
 
-export const FaqList = ({ data, onEndReached, onEndReachedThreshold, isLoading }: FaqListProps) => {
+export const FaqList = ({ data }: FaqListProps) => {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   const toggleItemExpansion = (itemId: number) => {
@@ -32,18 +29,6 @@ export const FaqList = ({ data, onEndReached, onEndReachedThreshold, isLoading }
     return uuidv4();
   };
 
-  const renderFooter = () => {
-    if (isLoading) {
-      return (
-        <View>
-          <ActivityIndicator size="large" />
-        </View>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <FlatList
       data={data}
@@ -55,9 +40,6 @@ export const FaqList = ({ data, onEndReached, onEndReachedThreshold, isLoading }
           onPress={() => toggleItemExpansion(item.id)}
         />
       )}
-      onEndReached={onEndReached}
-      onEndReachedThreshold={onEndReachedThreshold}
-      ListFooterComponent={renderFooter}
     />
   );
 };

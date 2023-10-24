@@ -22,7 +22,7 @@ export const SafeArea = styled(SafeAreaView).attrs({
 
 export const Padding = styled.View`
   flex: 1;
-  padding: 0 ${({ theme }) => theme.SPACING.SM}px;
+  padding: 0 ${({ theme }) => theme.SPACING.MD}px;
 `;
 
 export const ImageBackground = styled.ImageBackground`

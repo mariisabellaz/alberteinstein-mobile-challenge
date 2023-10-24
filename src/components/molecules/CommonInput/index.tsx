@@ -19,7 +19,7 @@ export function CommonInput({ caption = '', error, isPassword, ...props }: Commo
       </S.Caption>
       <Input {...props} isPassword={isPassword} testID="input" />
       {error && (
-        <S.ErrorLabel appearance="helperText" testID="input-error">
+        <S.ErrorLabel appearance="error" testID="input-error">
           {error}
         </S.ErrorLabel>
       )}

@@ -10,6 +10,7 @@ import { Form } from '@components/organisms/Form';
 import { CommonScreen } from '@components/templates/DefaultPage';
 import * as S from './styles';
 
+import { Typography } from '@components/atoms/Typography';
 import { schema } from './login.yup';
 
 type FormData = yup.InferType<typeof schema>;
@@ -57,7 +58,12 @@ export function Login() {
         autoComplete="off"
         error={errors?.password?.message}
       />
-      <S.HelperText testID="helper-text">Não possui conta?</S.HelperText>
+      <Typography alignment="center" mb="MD" testID="helper-text" appearance="helperText">
+        Esqueceu sua senha?{' '}
+        <S.HelperText alignment="center" appearance="helperText">
+          Recuperar senha
+        </S.HelperText>
+      </Typography>
 
       <Button
         label="Entrar"

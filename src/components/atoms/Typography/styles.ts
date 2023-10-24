@@ -14,7 +14,8 @@ type AppearanceType =
   | 'placeholder'
   | 'button'
   | 'helperText'
-  | 'body';
+  | 'body'
+  | 'error';
 
 export type CustomTextProps = {
   appearance: AppearanceType;
@@ -95,6 +96,13 @@ const styles: {
     `};
   `,
   helperText: css`
+    ${({ theme }) => css`
+      font-size: ${theme.FONTSIZE.XS}px;
+      color: ${theme.COLORS.TEXT.SECONDARY};
+      font-family: ${theme.FONTFAMILY.REGULAR};
+    `};
+  `,
+  error: css`
     ${({ theme }) => css`
       font-size: ${theme.FONTSIZE.XS}px;
       color: ${theme.COLORS.TEXT.ERROR};

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { ListItem, useFAQ } from '@context/faqContext';
 
+import { LoadIndicator } from '@components/atoms/Loading/styles';
 import { Typography } from '@components/atoms/Typography';
 import { Search } from '@components/molecules/Search';
 import { FaqList } from '@components/organisms/FaqList';
@@ -15,21 +16,17 @@ export function Faq() {
 
   const onSearch = (searchText: string) => {
     setSearchText(searchText);
-
     const searchWords = searchText.toLowerCase().split(' ');
-    const searchList = items.filter((item) =>
-      searchWords.every((word) => item.title.toLowerCase().includes(word))
-    );
-
+    const searchList = searchText
+      ? items.filter((item) => searchWords.every((word) => item.title.toLowerCase().includes(word)))
+      : items;
     setFilteredItems(searchList);
   };
 
   useEffect(() => {
     fetchNextPage();
   }, []);
-  //onSubmitEditing
-  console.tron.log('RESULTS FILTER', filteredItems);
-  console.tron.log('RESULTS', items);
+
   return (
     <CommonScreen.Header screenName="Central de Ajuda">
       <S.Container>
@@ -44,14 +41,9 @@ export function Faq() {
         </Typography>
 
         {isLoading ? (
-          <></>
+          <LoadIndicator />
         ) : (
-          <FaqList
-            data={filteredItems.length >= 1 ? filteredItems : items}
-            onEndReached={fetchNextPage}
-            onEndReachedThreshold={0.1}
-            testID="faq-list"
-          />
+          <FaqList data={filteredItems.length >= 1 ? filteredItems : items} testID="faq-list" />
         )}
       </S.Container>
     </CommonScreen.Header>

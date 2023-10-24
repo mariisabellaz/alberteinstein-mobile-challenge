@@ -1,6 +1,5 @@
 import { TouchableOpacityProps } from 'react-native';
 
-import { Typography } from '@components/atoms/Typography';
 import * as S from './styles';
 
 type ButtonProps = Partial<S.CustomButtonProps> & TouchableOpacityProps & { label: string };
@@ -15,9 +14,9 @@ export function Button({ appearance = 'primary', label, ...rest }: ButtonProps) 
       testID="button"
       {...rest}
     >
-      <Typography appearance="button" testID="button-label">
+      <S.Label appearance="button" type={appearance} testID="button-label">
         {label}
-      </Typography>
+      </S.Label>
     </S.Containers>
   );
 }

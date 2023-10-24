@@ -18,16 +18,16 @@ const FAQContext = createContext<FAQContextType | undefined>(undefined);
 export const FAQProvider = ({ children }: ChildrenContextProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [items, setItems] = useState<ListItem[]>([]);
-  const [page, setPage] = useState(1);
 
   const fetchNextPage = async () => {
     try {
       setIsLoading(true);
 
       const response = await axios.get(`${BASE_URL}/posts`);
-      const newItems = response.data;
-      setItems([...items, ...newItems]);
-      setPage(page + 1);
+
+      if (response.status === 200) {
+        setItems(response.data);
+      }
     } catch (error) {
       console.error(error);
     } finally {

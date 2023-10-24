@@ -33,22 +33,24 @@ const ScreenHeading: React.FC<PropsWithChildren & ScreenTypographyProps> = ({
 }) => (
   <S.Container testID="page-container">
     <S.SafeArea edges={['top']}>
-      <Thumbnail
-        imageSource={logo}
-        width={130}
-        height={100}
-        testID="page-logo"
-        resizeMode="stretch"
-        mb="MD"
-      />
-      <Typography appearance="heading" mb="XS" testID="page-title">
-        {title}
-      </Typography>
-      <Typography appearance="subtitle" mb="MD" testID="page-subtitle">
-        {subtitle}
-      </Typography>
+      <S.Padding>
+        <Thumbnail
+          imageSource={logo}
+          width={130}
+          height={100}
+          testID="page-logo"
+          resizeMode="stretch"
+          mb="MD"
+        />
+        <Typography appearance="heading" mb="XS" testID="page-title">
+          {title}
+        </Typography>
+        <Typography appearance="subtitle" mb="XXL" testID="page-subtitle">
+          {subtitle}
+        </Typography>
 
-      {children}
+        {children}
+      </S.Padding>
     </S.SafeArea>
   </S.Container>
 );
